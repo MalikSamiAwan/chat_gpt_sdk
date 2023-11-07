@@ -96,8 +96,10 @@ class ChatCompleteText {
   ///A unique identifier representing your end-user, which can help OpenAI
   ///to monitor and detect abuse.[user]
   final String? user;
+  int? seed;
 
   ChatCompleteText({
+    this.seed=12345,
     required this.model,
     required this.messages,
     this.temperature = .3,
@@ -130,6 +132,7 @@ class ChatCompleteText {
             "presence_penalty": presencePenalty,
             "frequency_penalty": frequencyPenalty,
             "user": user,
+      "seed": seed,
           })
         : Map.of({
             "model": model.model,
@@ -143,9 +146,10 @@ class ChatCompleteText {
             "presence_penalty": presencePenalty,
             "frequency_penalty": frequencyPenalty,
             "user": user,
+      "seed": seed,
           })
       ..removeWhere((key, value) => value == null);
-
+print('final json is ${json}');
     return json;
   }
 }
