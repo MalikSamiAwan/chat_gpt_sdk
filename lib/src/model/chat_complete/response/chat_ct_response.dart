@@ -3,6 +3,7 @@ import 'package:chat_gpt_sdk/src/model/chat_complete/response/chat_choice.dart';
 import '../../complete_text/response/usage.dart';
 
 class ChatCTResponse {
+  String? system_fingerprint;
   final String id;
   final String object;
   final int created;
@@ -16,10 +17,12 @@ class ChatCTResponse {
     required this.created,
     required this.choices,
     required this.usage,
+    this.system_fingerprint,
   });
 
   factory ChatCTResponse.fromJson(Map<String, dynamic> json) => ChatCTResponse(
         id: json["id"],
+    system_fingerprint: json["system_fingerprint"],
         object: json["object"],
         created: json["created"],
         choices: List<ChatChoice>.from(
@@ -29,6 +32,7 @@ class ChatCTResponse {
       );
 
   Map<String, dynamic> toJson() => {
+        "system_fingerprint": system_fingerprint,
         "id": id,
         "object": object,
         "created": created,
