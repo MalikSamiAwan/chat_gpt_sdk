@@ -99,7 +99,7 @@ class ChatCompleteText {
   int? seed;
 
   ChatCompleteText({
-    this.seed=12345,
+    this.seed,
     required this.model,
     required this.messages,
     this.temperature = .3,
